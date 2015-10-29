@@ -106,13 +106,10 @@ commands = Thread.new do
       addedscene = gets.chomp
       $renderqueue.push(addedscene)
       puts "Added scene: #{addedscene}"
-    elsif command == "queue refresh"
-      puts "placeholder"
     elsif command == "queue help"
       puts "Queue commands:"
       puts "'queue' - Lists what is in the render queue."
       puts "'queue add' - Adds a scene to the queue."
-      puts "'queue refresh' - Searches for new scenes in queue folder."
     elsif command == "exit"
       exit
     else
