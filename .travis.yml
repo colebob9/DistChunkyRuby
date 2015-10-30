@@ -2,7 +2,7 @@ install:
   - bundle install --path vendor/bundle
 cache: bundler
 language: ruby
-sudo: false
+sudo: required
 rvm:
   - 2.1.0
   - 2.1.1
