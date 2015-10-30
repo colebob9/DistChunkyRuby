@@ -1,10 +1,5 @@
 #!/usr/bin/env ruby -w
 
-# travis ci stuff
-group :test do
-  gem 'rake'
-end
-
 require "socket"
 puts "DistChunky Client vX.X.X"
 puts "Written by colebob9"

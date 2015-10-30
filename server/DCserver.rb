@@ -1,10 +1,5 @@
 #!/usr/bin/env ruby -w
 
-# travis ci stuff
-group :test do
-  gem 'rake'
-end
-
 # defining classes and methods first
 require "socket"
 require "FileUtils"
