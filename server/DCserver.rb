@@ -1,9 +1,8 @@
 #!/usr/bin/env ruby -w
-
+puts "Starting up..."
 # defining classes and methods first
 require "socket"
 require "FileUtils"
-puts "Starting up..."
 class Server
   def initialize( port, ip )
     @server = TCPServer.open( ip, port )
@@ -57,6 +56,12 @@ FileUtils.mkdir_p 'scenes/done'
 puts "Created 'scenes/done' folder."
 end
 
+# create config folder
+unless File.directory? 'config'
+FileUtils.mkdir_p 'config'
+puts "Created 'config' folder."
+end
+
 # make a config
 def makeconfig
   puts "test"
@@ -102,15 +107,32 @@ commands = Thread.new do
         puts $renderqueue
       end
     elsif command == "queue add"
-      puts "What is the scene name?"
+      puts "What is the scene name that you want to add?"
+      puts "Put '@' if you want to cancel."
       print "? "
-      addedscene = gets.chomp
-      $renderqueue.push(addedscene)
-      puts "Added scene: #{addedscene}"
+      if removedscene == "@"
+        puts "Canceled removal."
+      else
+        addedscene = gets.chomp
+        $renderqueue.push(addedscene)
+        puts "Added scene: #{addedscene}"
+      end
+    elsif command == "queue remove"
+      puts "What is the scene name that you want to remove?"
+      puts "Put '@' if you want to cancel."
+      print "? "
+      removedscene = gets.chomp
+      if removedscene == "@"
+        puts "Canceled removal."
+      else
+        $renderqueue.delete(removedscene)
+        puts "Added scene: #{removedscene}"
+      end
     elsif command == "queue help"
       puts "Queue commands:"
       puts "'queue' - Lists what is in the render queue."
       puts "'queue add' - Adds a scene to the queue."
+      puts "'queue remove' - Removes a scene from the queue."
     elsif command == "exit"
       exit
     else
