@@ -3,6 +3,7 @@ puts "Starting up..."
 # defining classes and methods first
 require "socket"
 require "FileUtils"
+require "yaml"
 class Server
   def initialize( port, ip )
     @server = TCPServer.open( ip, port )
@@ -62,9 +63,16 @@ FileUtils.mkdir_p 'config'
 puts "Created 'config' folder."
 end
 
-# make a config
-def makeconfig
-  puts "test"
+# make config files
+unless File.exist?('config/config.yml')
+  puts "test for config code"
+end
+
+# writes everytime there is a change to the queue
+def queuedump
+  File.open("config/queue.yml", "w") do |file|
+    file.write(YAML.dump($renderqueue))
+  end
 end
 
 # Startup Credits!
@@ -75,13 +83,6 @@ puts "Released under the MIT licence"
 puts "GitHub: <link>"
 puts
 
-# check for startup files
-configexist = File.exist?('config.txt')
-unless configexist
-  makeconfig
-else
-  puts "config exists."
-end
 # start up the server
 
 thread1 = Thread.new { Server.new( 3000, "localhost" ) }
@@ -110,10 +111,10 @@ commands = Thread.new do
       puts "What is the scene name that you want to add?"
       puts "Put '@' if you want to cancel."
       print "? "
-      if removedscene == "@"
+      addedscene = gets.chomp
+      if addedscene == "@"
         puts "Canceled removal."
       else
-        addedscene = gets.chomp
         $renderqueue.push(addedscene)
         puts "Added scene: #{addedscene}"
       end
@@ -127,6 +128,7 @@ commands = Thread.new do
       else
         $renderqueue.delete(removedscene)
         puts "Added scene: #{removedscene}"
+        queuedump
       end
     elsif command == "queue help"
       puts "Queue commands:"
