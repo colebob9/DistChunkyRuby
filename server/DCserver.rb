@@ -2,7 +2,7 @@
 puts "Loading..."
 
 # load time tracker
-def load_time(start, finish)
+def load_time_method(start, finish)
    finish - start
 end
 time1 = Time.now
@@ -142,8 +142,8 @@ commands = Thread.new do
     end
 end
 time2 = Time.now
-time = load_time time1, time2
-puts "Done loading! Took #{time} second(s)."
+load_time = load_time_method time1, time2
+puts "Done loading! Took #{load_time} second(s)."
 # Startup Credits!
 puts
 puts "DistChunky Server vX.X.X"
