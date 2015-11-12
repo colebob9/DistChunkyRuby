@@ -1,5 +1,12 @@
 #!/usr/bin/env ruby -w
 puts "Loading..."
+
+# load time tracker
+def load_time(start, finish)
+   finish - start
+end
+time1 = Time.now
+
 # defining classes and methods first
 require "socket"
 require "FileUtils"
@@ -134,7 +141,9 @@ commands = Thread.new do
     end
     end
 end
-puts "Done loading!"
+time2 = Time.now
+time = load_time time1, time2
+puts "Done loading! Took #{time} second(s)."
 # Startup Credits!
 puts
 puts "DistChunky Server vX.X.X"
