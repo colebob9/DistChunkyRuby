@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby -w
-puts "Starting up..."
+puts "Loading..."
 # defining classes and methods first
 require "socket"
 require "FileUtils"
@@ -75,14 +75,6 @@ def queuedump
   end
 end
 
-# Startup Credits!
-puts
-puts "DistChunky Server vX.X.X"
-puts "Written by colebob9"
-puts "Released under the MIT licence"
-puts "GitHub: <link>"
-puts
-
 # start up the server
 
 thread1 = Thread.new { Server.new( 3000, "localhost" ) }
@@ -142,4 +134,12 @@ commands = Thread.new do
     end
     end
 end
+puts "Done loading!"
+# Startup Credits!
+puts
+puts "DistChunky Server vX.X.X"
+puts "Written by colebob9"
+puts "Released under the MIT licence"
+puts "GitHub: <link>"
+puts
 commands.join
