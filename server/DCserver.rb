@@ -11,6 +11,7 @@ time1 = Time.now
 require "socket"
 require "FileUtils"
 require "yaml"
+
 class Server
   def initialize( port, ip )
     @server = TCPServer.open( ip, port )
@@ -71,14 +72,17 @@ puts "Created 'config' folder."
 end
 
 # make config files
-unless File.exist?('config/config.yml')
+unless File.exist?('config/queue.yml')
   puts "test for config code"
 end
 
 # writes everytime there is a change to the queue
 def queuedump
-  File.open("config/queue.yml", "w") do |file|
-    file.write(YAML.dump($renderqueue))
+  queuefile = YAML.load_file("/config/queue.yml")
+  puts queuefile['queue']
+  queuefile['last_update'] = "text"
+  File.open('/config/queue.yml','w') do |h| 
+   h.write queuefile.to_yaml
   end
 end
 
