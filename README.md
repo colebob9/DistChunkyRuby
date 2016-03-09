@@ -13,4 +13,4 @@ Nothing yet! Still unfinished.
 * _More to come?_
 
 ## Notes
-Written in Ruby. Released under the [MIT licence](https://github.com/colebob9/DistChunky/blob/master/LICENCE).
+Written in Ruby. Released under the [MIT License](https://github.com/colebob9/DistChunky/blob/master/LICENSE).
