@@ -1,10 +1,8 @@
 # DistChunky
 A Chunky wrapper to work on many renders using multiple PCs.
 
-**Very unfinished, check back later for an actually usable program.** [Feel free to help out!](https://github.com/colebob9/DistChunky/pulls)
-
-## Download
-Nothing yet! Still unfinished.
+**Very unfinished, never going to be finished.** 
+[Check out this project instead to have a more functional, but slightly different, program.](https://github.com/colebob9/ChunkyScheduler)
 
 ## Features
 * Distributes scenes across computers one at a time.
